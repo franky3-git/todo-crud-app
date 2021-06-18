@@ -10,67 +10,66 @@ app.use(express.static(path.join(__dirname, '../frontend')))
 /* Controllers */
 // get all tasks
 const findDocuments = function(db, callback) {
-  // Get the documents collection
   const collection = db.collection(collec);
-  // Find some documents
-  collection.find({}).toArray(function(err, docs) {
+  collection.find({}).toArray()
+  .then(tasks => {
 	console.log('Found the following records');
-	console.log(docs);
-	callback(docs);
-  });
+	console.log(tasks);
+	callback(tasks);
+  })
+  .catch(err => console.log(err))
 };
 
 //create a task
 const insertDocuments = function(db, callback, req) {
 	const todo = req.body;
-  // Get the documents collection
-  const collection = db.collection(collec);
-  // Insert some documents
-  	collection.insertOne({ todo }, function(err, result) {
-    console.log('Inserted task into the collection');
-    callback(result);
-  });
+	console.log(todo)
+  	const collection = db.collection(collec);
+  	collection.insertOne({ ...todo })
+	.then((result) => {
+		console.log('Inserted task into the collection');
+		callback({result: result.ops[0]});
+	  })
+	.catch(err => console.log(err))
 };
 
 //find one task
 const findOneDocuments = function(db, callback, req) {
 	const todoID = req.params.id;
-
-  // Get the documents collection
   const collection = db.getDB().collection(collec);
-  // Find one specific documents
-  collection.findOne({ _id:  db.getID(todoID)},(function(err, doc) {
-    console.log('Found the following record');
-    console.log(doc);
-    callback(doc);
-  }));
+  collection.findOne({ _id:  db.getID(todoID)})
+  .then((task) => {
+	console.log('Found the following record');
+	console.log(task);
+	callback(task);
+  })
+  .catch()
 };
 
 //update a task
 const updateDocuments = function(db, callback, req) {
 	const todoID = req.params.id;
 	const todo = req.body;
-  // Get the documents collection
   const collection = db.getDB().collection(collec);
-  // Find some documents and update it
-  collection.update({ _id:  db.getID(todoID)}, {...todo}, (function(err, doc) {
+  collection.update({ _id:  db.getID(todoID)}, {...todo})
+  .then((updatedTask) => {
     console.log('Update the following record');
-    console.log(doc);
-    callback(doc);
-  }));
+    console.log(updatedTask);
+    callback(updatedTask);
+  })
+  .catch(err => console.log(err))
 };
 
 //delete a task
 const deleteDocument = function(db, callback, req) {
 	const todoID = req.params.id;
-  // Get the documents collection
   const collection = db.getDB().collection(collec);
-  // Find one documents and delete it
-  collection.findOneAndDelete({ _id:  db.getID(todoID)}, (function(err, doc) {
+  collection.remove({ _id:  db.getID(todoID)})
+  .then((deletedTask) => {
     console.log('Delete the following record');
-    console.log(doc);
-    callback(doc);
-  }));
+    console.log(deletedTask);
+    callback(deletedTask);
+  })
 };
 
 
