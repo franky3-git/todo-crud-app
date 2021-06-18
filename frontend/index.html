@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todo APP</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style>
+		*{
+			font-family: sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 30px;
+		}
+		.container {
+			
+			max-width: 800px;
+			margin: 30px auto;
+		}
+		form {
+			padding: 2em;
+			border-radius: 5px;
+			box-shadow: 0 3px 5px rgba(0,0,0,.5);
+		}
+		#input-task {
+			padding: 4px;
+			width: 100%;
+			max-width: 600px;
+			border: none;
+			border-bottom: 2px #444 solid;
+			font-size: 1.1em;
+		}
+		.output {
+			margin-top: 40px;
+		}
+		.todo-list {
+			list-style: none;
+		}
+		.list-task {
+			padding: 5px;
+			display: flex;
+		}
+		button {
+			cursor: pointer;
+			padding: 3px;
+		}
+		.btn-modify {
+			margin-left: auto;
+		}
+	</style>
+	
+</head>
+<body>
+	
+	<h1>my todo app</h1>
+	<div class="container">
+		<form action="">
+			<input type="text" id="input-task" name="input-task" placeholder="Enter a task">
+			<button type="submit">save task</button>
+		</form>
+		<div class="output">
+			<ul class="todo-list">
+				<li id="object id" class="list-task"><span class="task">just an exemple</span><button class="btn btn-modify"><i class="fas fa-pen"></i></button> <button class="btn"><i class="fas fa-times"></i></button></li>
+			</ul>
+		</div>
+	</div>
+	
+	
+	<script src="main.js"></script>
+</body>
+</html>
