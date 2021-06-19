@@ -8,7 +8,6 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, '../frontend')))
 
 /* Controllers */
-// get all tasks
 const findDocuments = function(db, callback) {
   const collection = db.collection(collec);
   collection.find({}).toArray()
@@ -20,7 +19,7 @@ const findDocuments = function(db, callback) {
   .catch(err => console.log(err))
 };
 
-//create a task
+
 const insertDocuments = function(db, callback, req) {
 	const todo = req.body;
 	console.log(todo)
@@ -33,7 +32,7 @@ const insertDocuments = function(db, callback, req) {
 	.catch(err => console.log(err))
 };
 
-//find one task
+
 const findOneDocuments = function(db, callback, req) {
 	const todoID = req.params.id;
   const collection = db.getDB().collection(collec);
@@ -46,7 +45,7 @@ const findOneDocuments = function(db, callback, req) {
   .catch()
 };
 
-//update a task
+
 const updateDocuments = function(db, callback, req) {
 	const todoID = req.params.id;
 	const todo = req.body;
@@ -60,7 +59,7 @@ const updateDocuments = function(db, callback, req) {
   .catch(err => console.log(err))
 };
 
-//delete a task
+
 const deleteDocument = function(db, callback, req) {
 	const todoID = req.params.id;
   const collection = db.getDB().collection(collec);
@@ -73,6 +72,7 @@ const deleteDocument = function(db, callback, req) {
 };
 
 
+/* routes */
 app.get('/api/task', (req, res) => {
 	findDocuments(db.getDB(), (tasks) => {
 		if(tasks.length == 0) {

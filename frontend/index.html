@@ -15,7 +15,6 @@
 			margin-top: 30px;
 		}
 		.container {
-			
 			max-width: 800px;
 			margin: 30px auto;
 		}
@@ -31,6 +30,11 @@
 			border: none;
 			border-bottom: 2px #444 solid;
 			font-size: 1.1em;
+			outline: none;
+		}
+		form button {
+			padding: 5px 8px;
+			cursor: pointer;
 		}
 		.output {
 			margin-top: 40px;
@@ -38,11 +42,11 @@
 		.todo-list {
 			list-style: none;
 		}
-		.list-task {
+		[id^="list_"] {
 			padding: 5px;
 			display: flex;
 		}
-		button {
+		.btn {
 			cursor: pointer;
 			padding: 3px;
 		}
@@ -62,8 +66,8 @@
 	
 	<h1>my todo app</h1>
 	<div class="container">
-		<form action="">
-			<input type="text" id="input-task" name="input-task" placeholder="Enter a task">
+		<form action="" id="form">
+			<input type="text" id="input-task" name="input-task" placeholder="Enter a task" autocomplete="off">
 			<button type="submit">save task</button>
 		</form>
 		<div class="output">
